@@ -1,24 +1,21 @@
-import java.util.Arrays;
+import java.util.*
 
 /**
  * Given two strings, write a method to check if one is a permutation of the other.
  *
  * Assumption: ASCII strings and case-sensitive
  */
-
-
-
-public class StringPermutation {
-    public String sort(String s){
-        char[] content = s.toCharArray();
-        Arrays.sort(content);
-        return new String(content);
+class StringPermutation {
+    fun sort(s: String): String {
+        val content = s.toCharArray()
+        Arrays.sort(content)
+        return String(content)
     }
 
-    public boolean permutation(String s, String t){
-        if(s.length() != t.length()){
-            return false;
+    fun permutation(s: String, t: String): Boolean {
+        if (s.length != t.length) {
+            return false
         }
-        return sort(s).equals(sort(t));
+        return sort(s) == sort(t)
     }
 }
