@@ -1,4 +1,4 @@
-import java.util.Arrays;
+import java.util.*
 
 /**
  * Write a function to find the longest common prefix string amongst an array of strings.
@@ -24,21 +24,19 @@ import java.util.Arrays;
  * 0 <= strs[i].length <= 200
  * strs[i] consists of only lowercase English letters.
  */
-
-public class LongestCommonPrefix {
-    public String longestCommonPrefix(String[] strs) {
-        Arrays.sort(strs);
-        String s1 = strs[0];
-        String s2 = strs[strs.length-1];
-        int idx = 0;
-        while(idx < s1.length() && idx < s2.length()){
-            if(s1.charAt(idx) == s2.charAt(idx)){
-                idx++;
+class LongestCommonPrefix {
+    fun longestCommonPrefix(strs: Array<String>): String {
+        Arrays.sort(strs)
+        val s1 = strs[0]
+        val s2 = strs[strs.size - 1]
+        var idx = 0
+        while (idx < s1.length && idx < s2.length) {
+            if (s1[idx] == s2[idx]) {
+                idx++
             } else {
-                break;
+                break
             }
         }
-        return s1.substring(0, idx);
-
+        return s1.substring(0, idx)
     }
 }

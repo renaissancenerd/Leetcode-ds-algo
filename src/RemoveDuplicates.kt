@@ -19,18 +19,15 @@
  * Explanation: Your function should return k = 5, with the first five elements of nums being 0, 1, 2, 3, and 4 respectively.
  * It does not matter what you leave beyond the returned k (hence they are underscores).
  */
-
-
-
-public class RemoveDuplicates {
-    public int removeDuplicates(int[] nums) {
-        int i=0;
-        for(int j=1;j<nums.length;j++){
-            if(nums[i]!=nums[j]){
-                i++;
-                nums[i]=nums[j];
+class RemoveDuplicates {
+    fun removeDuplicates(nums: IntArray): Int {
+        var i = 0
+        for (j in 1 until nums.size) {
+            if (nums[i] != nums[j]) {
+                i++
+                nums[i] = nums[j]
             }
         }
-        return i+1;
+        return i + 1
     }
 }

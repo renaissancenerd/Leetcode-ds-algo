@@ -1,33 +1,17 @@
-import java.util.Arrays;
+import java.util.*
 
-/*Squares of a Sorted Array
-
-Given an array of integers A sorted in non-decreasing order, return an array of the squares of each number, also in sorted non-decreasing order.
-
-Example 1:
-Input: [-4,-1,0,3,10]
-Output: [0,1,9,16,100]
-
-Example 2:
-Input: [-7,-3,2,3,11]
-Output: [4,9,9,49,121]
-
-Note:
-1 <= A.length <= 10000
--10000 <= A[i] <= 10000
-A is sorted in non-decreasing order.*/
-public class SquaresOfSortedArray {
+class SquaresOfSortedArray {
     /*
      * Solution 1:
         1). We can iterate through the array, replace each number with its square.
         2). Use Arrays.sort() to sort the array.
     */
-    public int[] sortedSquares1(int[] A) {
-        for (int i = 0; i < A.length; i++) {
-            A[i] = A[i] * A[i];
+    fun sortedSquares1(A: IntArray): IntArray {
+        for (i in A.indices) {
+            A[i] = A[i] * A[i]
         }
-        Arrays.sort(A);
-        return A;
+        Arrays.sort(A)
+        return A
     }
 
     /*
@@ -59,46 +43,49 @@ public class SquaresOfSortedArray {
             is handled in second while loop.
         Third while loop will move square root of all the positives numbers from array A to outputA.
     */
-    public int[] sortedSquares(int[] A) {
+    fun sortedSquares(A: IntArray): IntArray {
         //initially have count of negative numbers
-        int j = 0;
+        var j = 0
 
         //find the square
-        for (int k = 0; k < A.length; k++) {
-            if (A[k] < 0)
-                j++;
-            A[k] = A[k] * A[k];
+        for (k in A.indices) {
+            if (A[k] < 0) j++
+            A[k] = A[k] * A[k]
         }
-        int i = j - 1;
-        int s = 0;
-        int[] outputA = new int[A.length];
+        var i = j - 1
+        var s = 0
+        val outputA = IntArray(A.size)
 
-        while (i >= 0 && j <= A.length - 1) {
+        while (i >= 0 && j <= A.size - 1) {
             if (A[i] < A[j]) {
-                outputA[s] = A[i];
-                i--;
+                outputA[s] = A[i]
+                i--
             } else {
-                outputA[s] = A[j];
-                j++;
+                outputA[s] = A[j]
+                j++
             }
-            s++;
+            s++
         }
         while (i >= 0) {
-            outputA[s] = A[i];
-            i--;
-            s++;
+            outputA[s] = A[i]
+            i--
+            s++
         }
-        while (j <= A.length - 1) {
-            outputA[s] = A[j];
-            j++;
-            s++;
+        while (j <= A.size - 1) {
+            outputA[s] = A[j]
+            j++
+            s++
         }
-        return outputA;
+        return outputA
     }
-    public static void main(String[] args) {
-        SquaresOfSortedArray s=new SquaresOfSortedArray();
-        int[] A= {-3, -2, -1, 4, 5, 6};
-        //int[] A= {-1};
-        System.out.println(s.sortedSquares(A));
+
+    companion object {
+        @JvmStatic
+        fun main(args: Array<String>) {
+            val s = SquaresOfSortedArray()
+            val A = intArrayOf(-3, -2, -1, 4, 5, 6)
+            //int[] A= {-1};
+            println(s.sortedSquares(A))
+        }
     }
 }

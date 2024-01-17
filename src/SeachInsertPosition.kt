@@ -22,27 +22,21 @@
  * nums contains distinct values sorted in ascending order.
  * -104 <= target <= 104
  */
+class SeachInsertPosition {
+    fun Insert(nums: IntArray, low: Int, high: Int, target: Int): Int {
+        if (low > high) return low
 
-
-public class SeachInsertPosition {
-    public int Insert(int[] nums, int low, int high, int target){
-        if(low > high) return low;
-
-        int mid = (low + high) / 2;
-        if(nums[mid] == target){
-            return mid;
+        val mid = (low + high) / 2
+        return if (nums[mid] == target) {
+            mid
+        } else if (nums[mid] > target) {
+            Insert(nums, low, mid - 1, target)
+        } else {
+            Insert(nums, mid + 1, high, target)
         }
-
-        else if(nums[mid] > target){
-            return Insert(nums, low, mid-1, target);
-        }
-        else{
-            return Insert(nums, mid+1, high, target);
-        }
-
     }
 
-    public int searchInsert(int[] nums, int target) {
-        return Insert(nums, 0, nums.length-1, target);
+    fun searchInsert(nums: IntArray, target: Int): Int {
+        return Insert(nums, 0, nums.size - 1, target)
     }
 }

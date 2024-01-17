@@ -1,18 +1,6 @@
-/*
- * Max Consecutive Ones
+import kotlin.math.max
 
-	Given a binary array, find the maximum number of consecutive 1s in this array.
-	
-	Example 1:
-	Input: [1,1,0,1,1,1]
-	Output: 3
-	
-	Explanation: The first two digits or the last three digits are consecutive 1s. The maximum number of consecutive 1s is 3.
-	Note:
-	The input array will only contain 0 and 1.
-	The length of input array is a positive integer and will not exceed 10,000
- * */
-public class MaxConsecutiveOnes {
+class MaxConsecutiveOnes {
     /*
      * Algorithm
         1). Declare two variables max and tempmax.
@@ -25,25 +13,26 @@ public class MaxConsecutiveOnes {
         5). When we encounter 0, we will reset tempmax to 0.
         6). At the end we will return max or tempmax, whichever is greater.
      * */
-    public int findMaxConsecutiveOnes(int[] nums) {
-        int max = 0;
-        int tempmax = 0;
-        for (int i : nums) {
-            if (i == 1)
-                tempmax++;
+    fun findMaxConsecutiveOnes(nums: IntArray): Int {
+        var max = 0
+        var tempmax = 0
+        for (i in nums) {
+            if (i == 1) tempmax++
             else {
-                if (tempmax > max)
-                    max = tempmax;
-                if (max >= nums.length / 2)
-                    return max;
+                if (tempmax > max) max = tempmax
+                if (max >= nums.size / 2) return max
 
-                tempmax = 0;
+                tempmax = 0
             }
         }
-        return Math.max(max, tempmax);
+        return max(max.toDouble(), tempmax.toDouble()).toInt()
     }
-    public static void main(String[] args) {
-        int[] nums= {1,1,0,1,1,1};
-        System.out.println(new MaxConsecutiveOnes().findMaxConsecutiveOnes(nums));
+
+    companion object {
+        @JvmStatic
+        fun main(args: Array<String>) {
+            val nums = intArrayOf(1, 1, 0, 1, 1, 1)
+            println(MaxConsecutiveOnes().findMaxConsecutiveOnes(nums))
+        }
     }
 }

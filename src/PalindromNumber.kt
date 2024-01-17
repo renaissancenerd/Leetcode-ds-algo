@@ -25,18 +25,16 @@
  *
  * Follow up: Could you solve it without converting the integer to a string?
  */
-
-
-public class PalindromNumber {
-    public boolean isPalindrome(int x) {
-        int reverse = 0;
-        int temp = x;
-        if(x < 0) return false;
-        while(temp != 0){
-            int remainder = temp % 10;
-            reverse = reverse*10 + remainder;
-            temp = temp/10;
+class PalindromNumber {
+    fun isPalindrome(x: Int): Boolean {
+        var reverse = 0
+        var temp = x
+        if (x < 0) return false
+        while (temp != 0) {
+            val remainder = temp % 10
+            reverse = reverse * 10 + remainder
+            temp = temp / 10
         }
-        return reverse == x;
+        return reverse == x
     }
 }
